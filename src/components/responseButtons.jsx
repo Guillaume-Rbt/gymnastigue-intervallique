@@ -1,12 +1,10 @@
 import { buttons } from "../utils/constantsMusical.js";
 import Button from "./buttonBase.jsx";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 
-export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback, set}){
+export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback = ()=>{}, set}){
     let buttonList = [];
     let key = 0;
-    const [test, setTest] = useState(0)
-    useEffect(()=>{set(setTest)}, [])
     buttons.forEach(button => {
         if (Array.isArray(button))
         {
@@ -17,5 +15,5 @@ export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback, se
         key++
     })
 
-    return <div className="button-container">{buttonList}{test}</div>
+    return <div className="button-container">{buttonList}</div>
 })

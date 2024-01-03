@@ -11,8 +11,10 @@ export default class RandomIntervalGenerator {
         this.setDefaultOptions = this.setDefaultOptions.bind(this)
         this.generateInterval = this.generateInterval.bind(this)
         this.randomNumber = this.randomNumber.bind(this)
+        this.adjustIntervalOctave = this.adjustIntervalOctave.bind(this)
 
         this.setDefaultOptions(options)
+
         this.generateAnyIntervals = this.generateAnyIntervals.bind(this)
         this.generateInterval()
     }
@@ -42,20 +44,43 @@ export default class RandomIntervalGenerator {
         const noteStartNumber = this.randomNumber(0, 11)
         const noteStartName = notes[noteStartNumber]
         const direction = this.randomNumber(0, 1) == 0 ? 'desc' : "asc"
-        const noteEndName = direction == "asc" ? (noteStartNumber + intervalByNumber) > 11 ? notes[(noteStartNumber + intervalByNumber) - 12] : notes[noteStartNumber + intervalByNumber] :
-            (noteStartNumber - intervalByNumber) < 0 ? notes[12 + (noteStartNumber - intervalByNumber)] : notes[noteStartNumber - intervalByNumber]
+        const noteEndNumber = direction == "asc" ? (noteStartNumber + intervalByNumber) > 11 ? (noteStartNumber + intervalByNumber) - 12 : noteStartNumber + intervalByNumber :
+        (noteStartNumber - intervalByNumber) < 0 ? 12 + (noteStartNumber - intervalByNumber) : noteStartNumber - intervalByNumber
+        const noteEndName = notes[noteEndNumber]
         const isPassOctave = direction == 'asc' ? (noteStartNumber + intervalByNumber) > 11 ? true : false : (noteStartNumber - intervalByNumber) < 0 ? true : false
-        const octave = this.randomNumber(2, 4)
+        const octave = this.randomNumber(0, 2)
 
         let interval = {
             length: intervalByNumber,
             direction: direction,
             name: intervalName,
             isPassOctave: isPassOctave,
-            noteStart: { name: noteStartName, octave: octave },
-            noteEndName: { name: noteEndName, octave: isPassOctave ? direction == 'asc' ? octave + 1 : octave - 1 : octave }
+            noteStart: { name: noteStartName, octave: octave, index: noteStartNumber },
+            noteEnd: { name: noteEndName, octave: isPassOctave ? direction == 'asc' ? octave + 1 : octave - 1 : octave, index: noteEndNumber }
         }
 
+       let intervalAdjusted = this.adjustIntervalOctave(interval)
+
+        return intervalAdjusted
+    }
+
+    adjustIntervalOctave(interval)
+    {
+        switch (interval.direction)
+        {
+            case "asc": 
+            if(interval.noteEnd.octave > 2)
+            {
+                interval.noteStart.octave = interval.noteStart.octave - 1
+                interval.noteEnd.octave = interval.noteEnd.octave - 1
+            };
+            case "desc":
+                if(interval.noteEnd.octave < 0)
+                {
+                    interval.noteStart.octave =  interval.noteStart.octave + 1
+                    interval.noteEnd.octave = interval.noteEnd.octave + 1
+                };
+        }
         return interval
     }
 
