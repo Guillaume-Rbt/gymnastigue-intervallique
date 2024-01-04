@@ -2,7 +2,7 @@ import { buttons } from "../utils/constantsMusical.js";
 import Button from "./buttonBase.jsx";
 import { memo } from "react";
 
-export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback = ()=>{}, set}){
+export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback = ()=>{}, containerRef}){
     let buttonList = [];
     let key = 0;
     buttons.forEach(button => {
@@ -15,5 +15,5 @@ export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback = (
         key++
     })
 
-    return <div className="button-container">{buttonList}</div>
+    return <div ref={containerRef} className="button-container">{buttonList}</div>
 })

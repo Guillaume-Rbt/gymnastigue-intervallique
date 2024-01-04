@@ -3,11 +3,13 @@ import notes from '../assets/sounds/notes.wav'
 import Tooltip from './tooltip'
 import Button from './buttonBase'
 
-export default function IntervalPlayer({ dataInterval }) {
+export default function IntervalPlayer({ dataInterval, set}) {
     const [audio, setAudio] = useState(new Audio(notes))
     const [intervalData, setIntervalData] = useState(dataInterval)
     const intervalTemp = findTimeNotes(intervalData)
-    console.log(dataInterval)
+
+
+    set(setIntervalData)
 
     const playInterval = useCallback(() => {
 
@@ -31,9 +33,10 @@ export default function IntervalPlayer({ dataInterval }) {
 
     })
 
-    return <Tooltip text="Lire l'interval">
+    return <><Tooltip text="Lire l'interval">
         <Button type="rounded" radius='50px' handleClick={playInterval} text='lire'></Button>
-    </Tooltip>
+        
+    </Tooltip>{JSON.stringify(intervalData)}</>
 
 }
 

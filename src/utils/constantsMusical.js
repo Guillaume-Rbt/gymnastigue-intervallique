@@ -5,10 +5,10 @@ export const intervals = [
     "tierce mineure", 
     "tierce majeure" , 
     "quarte juste", 
-    ["quarte aug", "quinte dim"], 
+    "quarte aug / quinte dim", 
     "quinte juste",
-    ["quinte aug", "sixte mineure"], 
-    ["sixte majeure", "septième dim"], 
+    "quinte aug / sixte mineure", 
+    "sixte majeure / septième dim", 
     "septième mineure", 
     "septième majeure", 
     "octave"
@@ -19,12 +19,12 @@ export const buttons = [
     ["seconde mineure", "seconde majeure"] ,
     ["tierce mineure", "tierce majeure" ], 
     "quarte juste", 
-    ["quarte aug", "quinte dim"], 
+    "quarte aug / quinte dim", 
     "quinte juste",
-    ["quinte aug", "sixte mineure"], 
-    ["sixte majeure", "septième dim"], 
-    "septième mineure", 
-    "septième majeure", 
+    "quinte aug / sixte mineure", 
+    "sixte majeure / septième dim", 
+    ["septième mineure", 
+    "septième majeure"], 
     "octave"
 ]
 

@@ -6,6 +6,7 @@
   font-family: 'Urbanist-Medium';
   letter-spacing: 1px;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .btn.selected {
@@ -67,9 +68,15 @@
   border: 2px solid #fafafa;
   background-color: #e6e6e600;
   text-transform: capitalize;
+  transition: all 0.3s ease;
+  background-position: 50%;
+
+
 
   &:hover {
     background-color: darken(#ffffff59, 20);
+    transition: all 0.3s ease;
+
   }
 }
 
