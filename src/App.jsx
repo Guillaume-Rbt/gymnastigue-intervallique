@@ -4,9 +4,6 @@ function App() {
 
   
   return <div className='main-container'>
-      <header  id='header-content' className="header-content">
-        <CounterPoint></CounterPoint>
-      </header>
       
       <GameContent ></GameContent>
     

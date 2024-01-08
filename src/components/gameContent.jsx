@@ -1,60 +1,76 @@
 import { ResponseButtonsMemo } from "./responseButtons"
 import IntervalPlayer from "./intervalPlayer"
 import CounterPoint from "./counter"
-import { useCallback, useRef} from "react"
+import { useCallback, useMemo, useRef, useState } from "react"
 import RandomIntervalGenerator from "../libs/RandomIntervalGenerator"
 
 
 
 export default function GameContent({ header }) {
-    let i = 0
+    const [intervalNumber, setIntervalNumber] = useState(0)
+    const [score, setScore] = useState(0)
+    let answerScore = 0
+
+    const updateAnswerScore = useCallback((score) => {
+        answerScore = score
+
+    })
 
     const containerButtonsRef = useRef()
     const intervalsGenerator = new RandomIntervalGenerator()
-    const intervals = intervalsGenerator.generateAnyIntervals(10)
-    let setIntervalPlayer = null;
-    const setCallback = useCallback((callback) => { setIntervalPlayer = callback })
+    const intervals = useMemo(() => {
+        return intervalsGenerator.generateAnyIntervals(10)
+    }, [])
 
-    const callback = useCallback((e) => {
+
+    const handleResponse = useCallback((e) => {
         let valid = false
-        let response = containerButtonsRef.current.querySelector('[data-value="'+ intervals[i].name + '"]')
-        if(Array.isArray(intervals[i].name))
-        {
-            if(intervals[i].name.indexOf(e.target.dataset.value) !== -1)
-            {
+        let response = containerButtonsRef.current.querySelector('[data-value="' + intervals[intervalNumber].name + '"]')
+        if (Array.isArray(intervals[intervalNumber].name)) {
+            if (intervals[intervalNumber].name.indexOf(e.target.dataset.value) !== -1) {
                 valid = true
+                setScore((score) => score + answerScore)
             }
             else {
                 valid = false
             }
         }
-        else 
-        {
-            if(intervals[i].name == e.target.dataset.value)
-            {
+        else {
+            if (intervals[intervalNumber].name == e.target.dataset.value) {
                 valid = true
+                setScore((score) => score + answerScore)
+
+
             }
             else {
                 valid = false
             }
         }
 
-        if(valid)
-        {
+        if (valid) {
             e.target.classList.add('valid')
         }
-        else 
-        {
+        else {
             e.target.classList.add('error')
             response.classList.add('valid')
         }
-        i++
-        setIntervalPlayer(intervals[i])
-    })
+
+        if(intervalNumber < 10)
+        {
+            setIntervalNumber((intervalNumber) => intervalNumber + 1)
+        }
+        
+    }, [intervalNumber])
 
     return <div className="game-content">
-        {i.current}
-        <IntervalPlayer set={setCallback} dataInterval={intervals[i]}></IntervalPlayer>
-        <ResponseButtonsMemo containerRef={containerButtonsRef}  callback={callback}> </ResponseButtonsMemo>
+        <header className='game-header'>
+            <CounterPoint update={updateAnswerScore}></CounterPoint> 
+            <div>Score : {score}</div>
+            {intervalNumber + 1} / 10
+             </header>
+             {(intervalNumber > 9) && <div>Votre score est : {score}</div>}
+        
+       { (intervalNumber < 10) && <><IntervalPlayer dataInterval={intervals[intervalNumber]}></IntervalPlayer> 
+       <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo></>}
     </div>
 }

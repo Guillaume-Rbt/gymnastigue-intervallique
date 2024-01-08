@@ -39,7 +39,7 @@ export default class RandomIntervalGenerator {
     }
 
     generateInterval() {
-        const intervalByNumber = this.randomNumber(0, 11)
+        const intervalByNumber = this.randomNumber(0, 12)
         const intervalName = intervals[intervalByNumber];
         const noteStartNumber = this.randomNumber(0, 11)
         const noteStartName = notes[noteStartNumber]

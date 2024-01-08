@@ -12,8 +12,7 @@ const [coords, setCoords] = useState({top: 0, left:0})
         const localCoords =  {top: 0, left: 0}
         const targetRect = target.current.getBoundingClientRect();
         const tooltipRect = tooltipRef.current.getBoundingClientRect();
-        console.log(targetRect.left)
-        switch (positon) {
+                switch (positon) {
             case "topCenter":
                 localCoords.top = targetRect.top - tooltipRect.height - 5
                 localCoords.left = targetRect.left - (Math.abs((tooltipRect.width - targetRect.width)) / 2)

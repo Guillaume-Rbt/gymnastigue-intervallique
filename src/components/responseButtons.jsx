@@ -5,6 +5,8 @@ import { memo } from "react";
 export  const ResponseButtonsMemo = memo(function ResponseButtons ({callback = ()=>{}, containerRef}){
     let buttonList = [];
     let key = 0;
+
+    
     buttons.forEach(button => {
         if (Array.isArray(button))
         {
