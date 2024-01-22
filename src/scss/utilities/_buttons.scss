@@ -1,3 +1,5 @@
+$responseButtonRad: 5px;
+
 .btn {
   padding: 5px 15px 5px;
   border: none;
@@ -49,24 +51,24 @@
 
 .group-btn {
   display: flex;
-  background-color: #e6e6e600;
+  background-color: $white;
   align-items: center;
-  border-radius: 13px;
+  border-radius: $responseButtonRad;
 
   & .separator {
-    width: 0px;
-    height: 100%;
-    background-color: #ffffff;
+    width: 1px;
+    height: 70%;
+    background-color: $primary;
   }
 }
 
 
 .btn-response {
   width: max-content;
-  border-radius: 13px;
-  color: #fafafa;
+  border-radius: $responseButtonRad;
+  color: $primary;
   border: 2px solid #fafafa;
-  background-color: #e6e6e600;
+  background-color: $white;
   text-transform: capitalize;
   transition: all 0.3s ease;
   background-position: 50%;
@@ -74,15 +76,15 @@
 
 
   &:hover {
-    background-color: darken(#ffffff59, 20);
+    background-color: #c6cde4;
     transition: all 0.3s ease;
 
   }
 }
 
 .group-btn .double-btn:first-child {
-  border-top-left-radius: 13px;
-  border-bottom-left-radius: 13px;
+  border-top-left-radius: $responseButtonRad;
+  border-bottom-left-radius: $responseButtonRad;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -91,6 +93,6 @@
   border-left: none;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border-top-right-radius: 13px;
-  border-bottom-right-radius: 13px;
+  border-top-right-radius: $responseButtonRad;
+  border-bottom-right-radius: $responseButtonRad;
 }

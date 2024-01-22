@@ -1,4 +1,4 @@
-$primary: #191b25;
+$primary: #1d1a5f;
 $white: #fafafa; 
 $black: #161616;
 $pink: #f52fb9;
@@ -19,7 +19,7 @@ user-select: none;
 
 body {
   background-color: $primary;
-  background-image: linear-gradient(30deg, #1269c7 , #9643b4);
+  //background-image: linear-gradient(30deg, #1269c7 , #9643b4);
   display: flex;
   align-items: center;
   justify-content: center;

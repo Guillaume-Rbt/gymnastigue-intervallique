@@ -2,16 +2,16 @@
 {
     background-color: $error;
     background-repeat: no-repeat ;
-    background-image: linear-gradient(0deg, $error 0%, darken($error, 10) 50%, $error 100%); 
+    background-image: linear-gradient(180deg, #be3939 0%, #E94F4E 30%); 
     animation: background 0.3s forwards ease-in
 
 }
 
 .btn-response.valid
 {
-    background-color: $valid;
+    background-color: #93AE38;
     background-repeat: no-repeat ;
-    background-image: linear-gradient(0deg, $valid 0%, darken($valid, 20) 50%, $valid 100%); 
+    background-image: linear-gradient(180deg, #8da52d 0%, #a7c740 30%); 
     animation: background 0.3s forwards ease-in-out
 }
 

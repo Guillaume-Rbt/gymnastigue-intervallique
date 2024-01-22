@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 
 
-export default function CounterPoint({ update = () => {} }) {
+export default function CounterPoint({ update = () => { } }) {
     const [second, setSecond] = useState(0)
     const [point, setPoint] = useState(5)
 
@@ -13,14 +13,14 @@ export default function CounterPoint({ update = () => {} }) {
     )
 
     useEffect(() => {
-    const   timer = window.setInterval(() => {
+        const timer = window.setInterval(() => {
             setSecond(second => second + 1)
         }, 1000);
         return () => { window.clearInterval(timer) }
     }, [])
 
     useEffect(() => {
-        if (second === 3) {
+        if (second === 6) {
             setPoint(point => point - 2)
             setSecond(0)
         }

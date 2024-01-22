@@ -2,40 +2,33 @@ import { useCallback, useEffect, useState } from 'react'
 import notes from '../assets/sounds/notes.wav'
 import Tooltip from './tooltip'
 import Button from './buttonBase'
+import SoundPlayer from '../libs/SoundPlayer'
 
-export default function IntervalPlayer({ dataInterval}) {
-    const [audio, setAudio] = useState(new Audio(notes))
-    const intervalTemp = findTimeNotes(dataInterval)
+const soundPlayer = new SoundPlayer(notes)
 
+export default function IntervalPlayer({ dataInterval }) { findTimeNotes(dataInterval)
+    
 
     const playInterval = useCallback(() => {
-
-        audio.currentTime = intervalTemp.timeNoteStart / 1000
-
-        audio.play()
-        let timer = setTimeout(() => {
-            audio.pause()
-            audio.currentTime = intervalTemp.timeNoteEnd / 1000
-            audio.play()
-            
-        }, 1750)
-
-
-        let timer2 = setTimeout(() => {
-            audio.pause()
-            clearTimeout(timer)
-            clearTimeout(timer2)
-        }, 3500)
-
-
+        soundPlayer.playInterval()
     })
 
+
+    useEffect(
+        () => {
+           soundPlayer.setIntervalTimes(findTimeNotes(dataInterval))
+           soundPlayer.playInterval()
+        }, [dataInterval])
+
+
+
     return <><Tooltip text="Lire l'interval">
-        <Button type="rounded" radius='50px' handleClick={playInterval} text='lire'></Button>    
-    </Tooltip>{JSON.stringify(dataInterval)}
+        <Button type="rounded" radius='50px' handleClick={playInterval} text='lire'></Button>
+    </Tooltip>
     </>
 
 }
+
 
 
 function findTimeNotes(interval) {
@@ -46,7 +39,7 @@ function findTimeNotes(interval) {
     const timeNoteEnd = timeSeparateNotes * (noteEnd.index + noteEnd.octave * 12)
 
     return {
-        timeNoteStart: timeNoteStart,
-        timeNoteEnd: timeNoteEnd,
+        timeNote1: timeNoteStart,
+        timeNote2: timeNoteEnd,
     }
 }

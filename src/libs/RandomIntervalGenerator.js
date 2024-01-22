@@ -22,7 +22,7 @@ export default class RandomIntervalGenerator {
 
     setDefaultOptions(options) {
         this.options = {
-            intervalsAllowed: "all",
+            intervalsAllowed: "all", //use later if implements intervals choices
             ...options
         }
     }
@@ -32,7 +32,7 @@ export default class RandomIntervalGenerator {
      * @param {number} [min=0] 
      * @param {number} [max=0]
      * @returns {number}
-     * @description return an in between min & max
+     * @description return an int between min & max
      */
     randomNumber(min = 0, max = 1) {
         return Math.floor(Math.random() * (max - min + 1)) + min
