@@ -1,14 +1,17 @@
 @font-face {
     font-family: 'Urbanist-Regular';
-    src: url('./assets/fonts/Urbanist-Regular.ttf');
+    src: url('./assets/fonts/Urbanist-Regular.woff2') format("woff2"),
+         url('./assets/fonts/Urbanist-Regular.woff') format("woff");
   }
 
 @font-face {
     font-family: "Urbanist-Bold";
-    src: url('./assets/fonts/Urbanist-Bold.ttf');
+    src: url('./assets/fonts/Urbanist-Bold.woff2') format("woff2"),
+         url('./assets/fonts/Urbanist-Bold.woff') format("woff");
 }
 
 @font-face {
     font-family: "Urbanist-Medium";
-    src: url('./assets/fonts/Urbanist-Medium.ttf');
+    src: url('./assets/fonts/Urbanist-Medium.woff2') format("woff2"),
+         url('./assets/fonts/Urbanist-Medium.woff') format("woff");
 }

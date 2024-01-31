@@ -39,37 +39,18 @@ body {
   position: relative;
   padding: 80px;
   border-radius: 10px;
-  background-color:  #f1f1f300;
   width: 80%;
-
-  &::after, 
-  &::before {
-    content:"";
-    background-color: #c7c7cc00;
-    border-radius: 10px;
-    position: absolute;
-    width: calc(100% - 38px);
-    left: 19px;
-    height: calc(100% + 2px);
-    top:-1px;
-    z-index: -1;
-  }
-
-  &::after {
-    transform: rotate(1deg);
-  }
-  &::before {
-    transform: rotate(-1deg);
-  }
  
 }
 
-.header-content {
+.game-content__header {
   width:100%;
   height: 50px; 
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  color: $white
+
 }
 
 

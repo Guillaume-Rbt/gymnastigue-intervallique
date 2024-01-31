@@ -66,8 +66,6 @@ $responseButtonRad: 5px;
 .btn-response {
   width: max-content;
   border-radius: $responseButtonRad;
-  color: $primary;
-  border: 2px solid #fafafa;
   background-color: $white;
   text-transform: capitalize;
   transition: all 0.3s ease;

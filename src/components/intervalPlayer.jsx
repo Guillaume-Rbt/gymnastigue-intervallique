@@ -3,11 +3,13 @@ import notes from '../assets/sounds/notes.wav'
 import Tooltip from './tooltip'
 import Button from './buttonBase'
 import SoundPlayer from '../libs/SoundPlayer'
+import useSoundPlayer from '../hooks/useSound'
 
-const soundPlayer = new SoundPlayer(notes)
+//const soundPlayer = new SoundPlayer(notes)
 
 export default function IntervalPlayer({ dataInterval }) { findTimeNotes(dataInterval)
     
+    const soundPlayer = useSoundPlayer()
 
     const playInterval = useCallback(() => {
         soundPlayer.playInterval()

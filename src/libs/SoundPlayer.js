@@ -7,6 +7,7 @@ export default class SoundPlayer {
         }
         this.currentNote = 1
 
+
         this.setIntervalTimes = this.setIntervalTimes.bind(this)
         this.onAudioTimeUpdater = this.onAudioTimeUpdater.bind(this)
         this.playInterval = this.playInterval.bind(this)
@@ -44,5 +45,11 @@ export default class SoundPlayer {
 
     addListener() {
         this.audio.addEventListener('timeupdate', this.onAudioTimeUpdater)
+    }
+
+    isPlaying()
+    {
+        return !this.audio.paused
+
     }
 }
