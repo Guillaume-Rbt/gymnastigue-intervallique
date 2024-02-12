@@ -5,7 +5,7 @@ function App() {
   
   return <div className='main-container'>
       
-      <GameContent ></GameContent>
+      <GameContent></GameContent>
     
     </div>
   

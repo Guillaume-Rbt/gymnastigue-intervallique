@@ -7,7 +7,10 @@ import Button from "./buttonBase"
 import useSoundPlayer from "../hooks/useSound"
 
 const intervalsGenerator = new RandomIntervalGenerator()
+
+
 export default function GameContent() {
+    const [gameSession, setGameSession] = useState(1)
     const [intervalNumber, setIntervalNumber] = useState(0)
     const [score, setScore] = useState(0)
     const containerButtonsRef = useRef()
@@ -17,11 +20,13 @@ export default function GameContent() {
         answerScore = score
     })
 
+    const [counterPaused, setCounterPaused] = useState(false)
+
 
 
     const intervals = useMemo(() => {
         return intervalsGenerator.generateAnyIntervals(10)
-    }, [])
+    }, [gameSession])
 
 
     const handleResponse = useCallback((e) => {
@@ -35,20 +40,23 @@ export default function GameContent() {
             if (intervals[intervalNumber].name.indexOf(e.target.dataset.value) !== -1) {
                 valid = true
                 setScore((score) => score + answerScore)
+               setCounterPaused(true)
             }
             else {
                 valid = false
+                setCounterPaused(true)
             }
         }
         else {
             if (intervals[intervalNumber].name == e.target.dataset.value) {
                 valid = true
                 setScore((score) => score + answerScore)
-
+                setCounterPaused(true)
                 
             }
             else {
                 valid = false
+                setCounterPaused(true)
 
             }
         }
@@ -74,6 +82,8 @@ export default function GameContent() {
 
         if (valid) {
             valid.classList.remove('valid')
+            setCounterPaused(false)
+
 
             if (error) {
                 error.classList.remove('error')
@@ -81,6 +91,7 @@ export default function GameContent() {
 
             if (intervalNumber < 10) {
                 setIntervalNumber((intervalNumber) => intervalNumber + 1)
+                
             }
         } else if(!player.isPlaying())
         {
@@ -89,13 +100,15 @@ export default function GameContent() {
             }
         }
     }
+
     return <div className="game-content">
+        
         <header className='game-content__header'>
-            <CounterPoint update={updateAnswerScore}></CounterPoint>
+         {(intervalNumber < 10) && <CounterPoint update={updateAnswerScore} pause={counterPaused}></CounterPoint>}
             <div className="game-content__score">Score : {score}</div>
             {(intervalNumber < 10) && <div className="game-content__answerNumber">{intervalNumber + 1} / 10</div>}
         </header>
-        {(intervalNumber > 9) && <div>Votre score est : {score}</div>}
+        {(intervalNumber > 9) && <><div>Votre score est : {score}</div> <Button type="primary" text="Recommencer" handleClick={()=>{setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0)}}></Button></>}
 
         {(intervalNumber < 10) && <><IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>
             <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo></>}
