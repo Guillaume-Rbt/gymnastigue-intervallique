@@ -9,6 +9,7 @@ $responseButtonRad: 5px;
   letter-spacing: 1px;
   font-size: 14px;
   transition: all 0.3s ease;
+  width: max-content;
 }
 
 .btn.selected {
@@ -51,32 +52,54 @@ $responseButtonRad: 5px;
 
 .group-btn {
   display: flex;
-  background-color: $white;
   align-items: center;
   border-radius: $responseButtonRad;
 
   & .separator {
-    width: 1px;
-    height: 70%;
-    background-color: $primary;
+    width: 2px;
+    height: 100%;
+    background-color: $blue;
   }
 }
 
 
 .btn-response {
   width: max-content;
+  font-family:"Urbanist-Bold";
   border-radius: $responseButtonRad;
-  background-color: $white;
+  border: 2px solid $blue;
+  color: $blue;
+  background-color: transparent;
+  padding: 10px 15px;
   text-transform: capitalize;
   transition: all 0.3s ease;
   background-position: 50%;
+  position: relative;
+  overflow: hidden;
 
+ &::before {
+  content: "";
+  width: calc(100% + 30px);
+  height: 100%;
+  position: absolute;
+  top: 100%;
+  left: -15px;
+  z-index: -1;
+  background-color: $blue ;
 
+  transition: all 0.3s ease-out;
+
+ }
 
   &:hover {
-    background-color: #c6cde4;
+    color: $white;
     transition: all 0.3s ease;
 
+  }
+
+  &:hover::before
+  {
+    top: 0
   }
 }
 
@@ -85,6 +108,7 @@ $responseButtonRad: 5px;
   border-bottom-left-radius: $responseButtonRad;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+  border-right: none;
 }
 
 .group-btn .double-btn:last-child {
@@ -93,4 +117,5 @@ $responseButtonRad: 5px;
   border-bottom-left-radius: 0px;
   border-top-right-radius: $responseButtonRad;
   border-bottom-right-radius: $responseButtonRad;
+  border-left: none;
 }

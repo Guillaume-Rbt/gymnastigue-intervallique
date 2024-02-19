@@ -1,5 +1,6 @@
 $primary: #1d1a5f;
 $white: #fafafa; 
+$blue: #4a90e2;
 $black: #161616;
 $pink: #f52fb9;
 $error: #e62006;
@@ -18,20 +19,20 @@ user-select: none;
 }
 
 body {
-  background-color: $primary;
-  //background-image: linear-gradient(30deg, #1269c7 , #9643b4);
+  background-image: url(./assets/images/background.webp);
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   font-family: 'Urbanist-Regular';
+  flex-direction: column;
 }
 
 .game-wrapper 
 {
   display: flex;
   justify-content: center;
-
 }
 
 .main-container
@@ -41,6 +42,17 @@ body {
   border-radius: 10px;
   width: 80%;
  
+}
+
+.flx-als-end
+{
+  align-self: flex-end;
+}
+
+.game-content
+{
+  display: flex;
+  flex-direction: column;
 }
 
 .game-content__header {
@@ -54,7 +66,7 @@ body {
 }
 
 
-@import './scss/utilities/_buttons.scss';
-@import './scss/components/_counter.scss';
+@import './scss/utilities/buttons.scss';
+@import './scss/components/counter.scss';
 @import './scss/components/responseButtons.scss';
 

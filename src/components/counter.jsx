@@ -22,9 +22,6 @@ export default function CounterPoint({ update = () => { }, pause }) {
     )
 
 
-
-console.log(second)
-
     useEffect(() => {
         timer = window.setInterval(() => {
             setSecond(second => !pause ? second + 1 : second)

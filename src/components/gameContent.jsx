@@ -4,6 +4,7 @@ import CounterPoint from "./counter"
 import { useCallback, useMemo, useRef, useState } from "react"
 import RandomIntervalGenerator from "../libs/RandomIntervalGenerator"
 import Button from "./buttonBase"
+import { createPortal } from "react-dom"
 import useSoundPlayer from "../hooks/useSound"
 
 const intervalsGenerator = new RandomIntervalGenerator()
@@ -110,8 +111,11 @@ export default function GameContent() {
         </header>
         {(intervalNumber > 9) && <><div>Votre score est : {score}</div> <Button type="primary" text="Recommencer" handleClick={()=>{setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0)}}></Button></>}
 
-        {(intervalNumber < 10) && <><IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>
-            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo></>}
-        <Button type="primary" text="suivant" handleClick={next}></Button>
+        {(intervalNumber < 10) && <>
+        <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
+        
+            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>  <Button type="primary" classes={["flx-als-end"]} text="suivant" handleClick={next}></Button>
+       {createPortal(<footer className="game-content__footer"><IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer></footer>, document.body)} </>}
+      
     </div>
 }
