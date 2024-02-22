@@ -26,7 +26,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   font-family: 'Urbanist-Regular';
-  flex-direction: column;
+  flex-wrap: wrap
 }
 
 .game-wrapper 
@@ -63,6 +63,16 @@ body {
   align-items: center;
   color: $white
 
+}
+
+.game-content__footer
+{
+  width: 100%;
+  min-height: 180px;
+  background-image: url('./assets/images/wavy-2.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-self: flex-end
 }
 
 

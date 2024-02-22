@@ -10,6 +10,13 @@ $responseButtonRad: 5px;
   font-size: 14px;
   transition: all 0.3s ease;
   width: max-content;
+
+
+  & .btn__text
+  {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .btn.selected {
@@ -44,16 +51,20 @@ $responseButtonRad: 5px;
 
 .button-container {
   display: flex;
-  gap: 10px;
+  row-gap: 15px;
+  column-gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: top;
+
 }
 
 .group-btn {
   display: flex;
   align-items: center;
   border-radius: $responseButtonRad;
+  box-shadow: 0 5px 10px 1px #babec4;
+
 
   & .separator {
     width: 2px;
@@ -69,22 +80,25 @@ $responseButtonRad: 5px;
   border-radius: $responseButtonRad;
   border: 2px solid $blue;
   color: $blue;
-  background-color: transparent;
+  background-color: #e5eef6;
   padding: 10px 15px;
   text-transform: capitalize;
   transition: all 0.3s ease;
   background-position: 50%;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 5px 10px 1px #babec4;
+  
 
- &::before {
+
+ &::after {
   content: "";
   width: calc(100% + 30px);
   height: 100%;
   position: absolute;
   top: 100%;
   left: -15px;
-  z-index: -1;
+  z-index: 1;
   background-color: $blue ;
 
   transition: all 0.3s ease-out;
@@ -97,7 +111,7 @@ $responseButtonRad: 5px;
 
   }
 
-  &:hover::before
+  &:hover::after
   {
     top: 0
   }
@@ -118,4 +132,8 @@ $responseButtonRad: 5px;
   border-top-right-radius: $responseButtonRad;
   border-bottom-right-radius: $responseButtonRad;
   border-left: none;
+}
+
+.btn-response.double-btn {
+  box-shadow: none;
 }
