@@ -61,7 +61,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  color: $white
+  color: $black
 
 }
 
@@ -72,7 +72,8 @@ body {
   background-image: url('./assets/images/wavy-2.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  align-self: flex-end
+  align-self: flex-end;
+  background-position: center;
 }
 
 

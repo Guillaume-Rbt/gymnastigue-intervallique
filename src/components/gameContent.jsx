@@ -6,6 +6,7 @@ import RandomIntervalGenerator from "../libs/RandomIntervalGenerator"
 import Button from "./buttonBase"
 import { createPortal } from "react-dom"
 import useSoundPlayer from "../hooks/useSound"
+import progressIcon from "../assets/images/wavy-2.svg?react"
 
 const intervalsGenerator = new RandomIntervalGenerator()
 
@@ -34,6 +35,8 @@ export default function GameContent() {
         if (containerButtonsRef.current.querySelector('.valid')) {
             return
         }
+
+        console.log(answerScore)
 
         let valid = false
         let response = containerButtonsRef.current.querySelector('[data-value="' + intervals[intervalNumber].name + '"]')
@@ -76,6 +79,8 @@ export default function GameContent() {
 
     }, [intervalNumber])
 
+    console.log(progressIcon)
+
     const next = function () {
        
         const error = containerButtonsRef.current.querySelector('.error')
@@ -101,7 +106,6 @@ export default function GameContent() {
             }
         }
     }
-
     return <div className="game-content">
         
         <header className='game-content__header'>
@@ -115,6 +119,8 @@ export default function GameContent() {
         <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
         
             <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>  <Button type="primary" classes={["flx-als-end"]} text="suivant" handleClick={next}></Button>
+        
+            <Button type="primary" icon={{appendType:"after", src:`${progressIcon}` } } text="test"></Button>
        {createPortal(<footer className="game-content__footer"><IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer></footer>, document.body)} </>}
       
     </div>

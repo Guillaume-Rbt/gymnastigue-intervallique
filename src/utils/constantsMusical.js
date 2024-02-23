@@ -23,8 +23,7 @@ export const buttons = [
     "quinte juste",
     "quinte aug / sixte mineure", 
     "sixte majeure / septième dim", 
-    ["septième mineure", 
-    "septième majeure"], 
+    ["septième mineure", "septième majeure"], 
     "octave"
 ]
 

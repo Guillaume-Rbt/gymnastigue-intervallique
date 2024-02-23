@@ -10,12 +10,22 @@ $responseButtonRad: 5px;
   font-size: 14px;
   transition: all 0.3s ease;
   width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
 
   & .btn__text
   {
     position: relative;
     z-index: 2;
+    pointer-events: none
+  }
+
+  & .button__icon
+  {
+    width: 12px
   }
 }
 
@@ -49,91 +59,3 @@ $responseButtonRad: 5px;
   }
 }
 
-.button-container {
-  display: flex;
-  row-gap: 15px;
-  column-gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: top;
-
-}
-
-.group-btn {
-  display: flex;
-  align-items: center;
-  border-radius: $responseButtonRad;
-  box-shadow: 0 5px 10px 1px #babec4;
-
-
-  & .separator {
-    width: 2px;
-    height: 100%;
-    background-color: $blue;
-  }
-}
-
-
-.btn-response {
-  width: max-content;
-  font-family:"Urbanist-Bold";
-  border-radius: $responseButtonRad;
-  border: 2px solid $blue;
-  color: $blue;
-  background-color: #e5eef6;
-  padding: 10px 15px;
-  text-transform: capitalize;
-  transition: all 0.3s ease;
-  background-position: 50%;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 5px 10px 1px #babec4;
-  
-
-
- &::after {
-  content: "";
-  width: calc(100% + 30px);
-  height: 100%;
-  position: absolute;
-  top: 100%;
-  left: -15px;
-  z-index: 1;
-  background-color: $blue ;
-
-  transition: all 0.3s ease-out;
-
- }
-
-  &:hover {
-    color: $white;
-    transition: all 0.3s ease;
-
-  }
-
-  &:hover::after
-  {
-    top: 0
-  }
-}
-
-.group-btn .double-btn:first-child {
-  border-top-left-radius: $responseButtonRad;
-  border-bottom-left-radius: $responseButtonRad;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-right: none;
-}
-
-.group-btn .double-btn:last-child {
-  border-left: none;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-top-right-radius: $responseButtonRad;
-  border-bottom-right-radius: $responseButtonRad;
-  border-left: none;
-}
-
-.btn-response.double-btn {
-  box-shadow: none;
-}
