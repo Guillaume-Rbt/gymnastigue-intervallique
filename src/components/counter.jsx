@@ -48,11 +48,11 @@ export default function CounterPoint({ update = () => { }, pause }) {
                 document.documentElement.style.setProperty('--progress', `${1 - ((1 / 10) * (second - 1))}px`)
             }
         }
-       
 
-    }
 
-        , [second])
+    },
+
+        [second])
 
     return <span className="point-value"><span ref={value}>{point} pts</span>
         <svg ref={visualCount} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="icon"><use href="./src/assets/images/progessCounter.svg#test" /></svg>

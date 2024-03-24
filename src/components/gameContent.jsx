@@ -12,7 +12,7 @@ const intervalsGenerator = new RandomIntervalGenerator()
 
 
 export default function GameContent() {
-    const [gameSession, setGameSession] = useState(1)
+    const [gameSession, setGameSession] = useState(0)
     const [intervalNumber, setIntervalNumber] = useState(0)
     const [score, setScore] = useState(0)
     const containerButtonsRef = useRef()
@@ -36,7 +36,7 @@ export default function GameContent() {
             return
         }
 
-        console.log(answerScore)
+
 
         let valid = false
         let response = containerButtonsRef.current.querySelector('[data-value="' + intervals[intervalNumber].name + '"]')
@@ -44,7 +44,7 @@ export default function GameContent() {
             if (intervals[intervalNumber].name.indexOf(e.target.dataset.value) !== -1) {
                 valid = true
                 setScore((score) => score + answerScore)
-               setCounterPaused(true)
+                setCounterPaused(true)
             }
             else {
                 valid = false
@@ -56,7 +56,7 @@ export default function GameContent() {
                 valid = true
                 setScore((score) => score + answerScore)
                 setCounterPaused(true)
-                
+
             }
             else {
                 valid = false
@@ -79,10 +79,9 @@ export default function GameContent() {
 
     }, [intervalNumber])
 
-    console.log(progressIcon)
 
     const next = function () {
-       
+
         const error = containerButtonsRef.current.querySelector('.error')
         const valid = containerButtonsRef.current.querySelector('.valid')
 
@@ -97,31 +96,36 @@ export default function GameContent() {
 
             if (intervalNumber < 10) {
                 setIntervalNumber((intervalNumber) => intervalNumber + 1)
-                
+
             }
-        } else if(!player.isPlaying())
-        {
+        } else if (!player.isPlaying()) {
             if (intervalNumber < 10) {
                 setIntervalNumber((intervalNumber) => intervalNumber + 1)
             }
         }
     }
-    return <div className="game-content">
-        
-        <header className='game-content__header'>
-         {(intervalNumber < 10) && <CounterPoint update={updateAnswerScore} pause={counterPaused}></CounterPoint>}
-            <div className="game-content__score">Score : {score}</div>
-            {(intervalNumber < 10) && <div className="game-content__answerNumber">{intervalNumber + 1} / 10</div>}
-        </header>
-        {(intervalNumber > 9) && <><div>Votre score est : {score}</div> <Button type="primary" text="Recommencer" handleClick={()=>{setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0)}}></Button></>}
+    return <div className={`game-content ${gameSession == 0 || intervalNumber < 10 ? 'init-game' : ''}`}>
 
-        {(intervalNumber < 10) && <>
-        <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
-        
-            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>  <Button type="primary" classes={["flx-als-end"]} text="suivant" handleClick={next}></Button>
-        
-            <Button type="primary" icon={{appendType:"after", src:`${progressIcon}` } } text="test"></Button>
-       {createPortal(<footer className="game-content__footer"><IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer></footer>, document.body)} </>}
-      
+        <header className='game-content__header'>
+            {(intervalNumber < 10 && gameSession > 0) && <><CounterPoint update={updateAnswerScore} pause={counterPaused}></CounterPoint>
+                <div className="game-content__score">Score : {score}</div>
+                <div className="game-content__answerNumber">{intervalNumber + 1} / 10</div>
+            </>}
+
+        </header>
+
+        {(gameSession < 1) &&
+            <Button type="primary" text="Commencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button>}
+
+        {(intervalNumber > 9 && gameSession > 0) && <><div>Votre score est : {score}</div>
+            <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></>}
+
+        {(intervalNumber < 10 && gameSession > 0) && <>
+            <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
+
+            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>
+            <Button type="primary" classes={["flx-als-end"]} text="suivant" handleClick={next}></Button>
+        </>}
+        {createPortal(<footer className="game-content__footer"> {(intervalNumber < 10 && gameSession > 0) && <IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>}</footer>, document.body)}
     </div>
 }

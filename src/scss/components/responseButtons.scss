@@ -1,46 +1,46 @@
 .button-container {
-    display: flex;
-    row-gap: 15px;
-    column-gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: top;
-  
+  display: flex;
+  row-gap: 15px;
+  column-gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+
+}
+
+.group-btn {
+  display: flex;
+  align-items: center;
+  border-radius: $responseButtonRad;
+  box-shadow: 0 5px 10px 1px #babec4;
+
+
+  & .separator {
+    width: 2px;
+    height: 100%;
+    background-color: $blue;
   }
-  
-  .group-btn {
-    display: flex;
-    align-items: center;
-    border-radius: $responseButtonRad;
-    box-shadow: 0 5px 10px 1px #babec4;
-  
-  
-    & .separator {
-      width: 2px;
-      height: 100%;
-      background-color: $blue;
-    }
-  }
-  
-  
-  .btn-response {
-    width: max-content;
-    font-family:"Urbanist-Bold";
-    border-radius: $responseButtonRad;
-    border: 2px solid $blue;
-    color: $blue;
-    background-color: #e5eef6;
-    padding: 10px 15px;
-    text-transform: capitalize;
-    transition: all 0.3s ease;
-    background-position: 50%;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 5px 10px 1px #babec4;
-    
-  
-  
-   &::after {
+}
+
+
+.btn-response {
+  width: max-content;
+  font-family: "Urbanist-Bold";
+  border-radius: $responseButtonRad;
+  border: 2px solid $blue;
+  color: $blue;
+  background-color: #e5eef6;
+  padding: 10px 15px;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+  background-position: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 10px 1px #babec4;
+
+
+
+  &::after {
     content: "";
     width: calc(100% + 30px);
     height: 100%;
@@ -49,71 +49,71 @@
     left: -15px;
     z-index: 1;
     background-color: $blue ;
-  
+
     transition: all 0.3s ease-out;
-  
-   }
-  
-    &:hover {
-      color: $white;
-      transition: all 0.3s ease;
-  
-    }
-  
-    &:hover::after
-    {
-      top: 0
-    }
-  }
-  
-  .group-btn .double-btn:first-child {
-    border-top-left-radius: $responseButtonRad;
-    border-bottom-left-radius: $responseButtonRad;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-right: none;
-  }
-  
-  .group-btn .double-btn:last-child {
-    border-left: none;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-top-right-radius: $responseButtonRad;
-    border-bottom-right-radius: $responseButtonRad;
-    border-left: none;
-  }
-  
-  .btn-response.double-btn {
-    box-shadow: none;
+
   }
 
-.btn-response.error
-{
-    background-color: $error;
-    background-repeat: no-repeat ;
+  &:hover {
     color: $white;
-    background-image: linear-gradient(180deg, #be3939 0%, #E94F4E 30%); 
-    border-color: #be3939;
-    animation: background 0.3s forwards ease-in;
-    pointer-events:  none;
-    
+    transition: all 0.3s ease;
+
+  }
+
+  &:hover::after {
+    top: 0
+  }
+}
+
+.group-btn .double-btn:first-child {
+  border-top-left-radius: $responseButtonRad;
+  border-bottom-left-radius: $responseButtonRad;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: none;
+}
+
+.group-btn .double-btn:last-child {
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: $responseButtonRad;
+  border-bottom-right-radius: $responseButtonRad;
+  border-left: none;
+}
+
+.btn-response.double-btn {
+  box-shadow: none;
+}
+
+.btn-response.error {
+  background-color: $error;
+  background-repeat: no-repeat;
+  color: $white;
+  background-image: linear-gradient(180deg, #be3939 0%, #E94F4E 30%);
+  border-color: #be3939;
+  animation: background 0.3s forwards ease-in;
+  pointer-events: none;
+
 
 }
 
-.btn-response.valid
-{
-    background-color: #93AE38;
-    background-repeat: no-repeat ;
-    color: $white;
-    background-image: linear-gradient(180deg, #8da52d 0%, #a7c740 30%); 
-    pointer-events:  none;
-    border-color: #a7c740;
-    animation: background 0.3s forwards ease-in-out
+.btn-response.valid {
+  background-color: #93AE38;
+  background-repeat: no-repeat;
+  color: $white;
+  background-image: linear-gradient(180deg, #8da52d 0%, #a7c740 30%);
+  pointer-events: none;
+  border-color: #a7c740;
+  animation: background 0.3s forwards ease-in-out
 }
 
 @keyframes background {
-    0% {    background-size: 100% 0%;
-    }
-    100% {background-size: 100% 100%}
-}
+  0% {
+    background-size: 100% 0%;
+  }
 
+  100% {
+    background-size: 100% 100%
+  }
+}
