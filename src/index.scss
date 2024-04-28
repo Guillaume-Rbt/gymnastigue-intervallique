@@ -36,6 +36,7 @@ body {
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  width: 100%;
 }
 
 .main-container {
@@ -71,6 +72,13 @@ body {
   font-size: 40px;
 }
 
+.game-content__wrap {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+}
+
 .game-content__footer {
   width: 100%;
   min-height: 180px;
@@ -82,6 +90,12 @@ body {
   justify-content: center;
 }
 
+.init-game {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
 
 @import './scss/utilities/buttons.scss';
 @import './scss/components/counter.scss';

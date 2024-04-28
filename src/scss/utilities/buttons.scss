@@ -1,5 +1,12 @@
 $responseButtonRad: 5px;
 
+
+%tedt {
+  padding: 10px 15px
+}
+
+
+
 .btn {
   padding: 5px 15px 5px;
   border: none;
@@ -16,16 +23,25 @@ $responseButtonRad: 5px;
   gap: 10px;
 
 
-  & .btn__text
-  {
+  & .btn__text {
     position: relative;
     z-index: 2;
     pointer-events: none
   }
 
-  & .button__icon
-  {
+  & .button__icon {
     width: 12px
+  }
+}
+
+.btn.btn-primary {
+  @extend %tedt;
+  background-color: $blue;
+  color: $white;
+  font-weight: 700;
+
+  &:hover {
+    background-color: lighten($blue, 5);
   }
 }
 
@@ -58,4 +74,3 @@ $responseButtonRad: 5px;
 
   }
 }
-

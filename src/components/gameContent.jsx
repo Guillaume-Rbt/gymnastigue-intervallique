@@ -6,13 +6,16 @@ import RandomIntervalGenerator from "../libs/RandomIntervalGenerator"
 import Button from "./buttonBase"
 import { createPortal } from "react-dom"
 import useSoundPlayer from "../hooks/useSound"
-import progressIcon from "../assets/images/wavy-2.svg?react"
+import { AnimatePresence, motion } from "framer-motion"
 
 const intervalsGenerator = new RandomIntervalGenerator()
-
+const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 }
+}
 
 export default function GameContent() {
-    const [gameSession, setGameSession] = useState(0)
+    const [gameSession, setGameSession] = useState(-1)
     const [intervalNumber, setIntervalNumber] = useState(0)
     const [score, setScore] = useState(0)
     const containerButtonsRef = useRef()
@@ -104,28 +107,29 @@ export default function GameContent() {
             }
         }
     }
-    return <div className={`game-content ${gameSession == 0 || intervalNumber < 10 ? 'init-game' : ''}`}>
+    return <div className={`game-content ${gameSession <= 0 || intervalNumber > 10 ? 'init-game' : ''}`}>
+        {(intervalNumber < 10 && gameSession > 0) &&
+            <motion.header variants={variants} initial='visible' animate="visible" exit='hidden' className='game-content__header'>
+                <><CounterPoint update={updateAnswerScore} pause={counterPaused}></CounterPoint>
+                    <div className="game-content__score">Score : {score}</div>
+                    <div className="game-content__answerNumber">{intervalNumber + 1} / 10</div>
+                </>
 
-        <header className='game-content__header'>
-            {(intervalNumber < 10 && gameSession > 0) && <><CounterPoint update={updateAnswerScore} pause={counterPaused}></CounterPoint>
-                <div className="game-content__score">Score : {score}</div>
-                <div className="game-content__answerNumber">{intervalNumber + 1} / 10</div>
-            </>}
+            </motion.header>}
 
-        </header>
 
-        {(gameSession < 1) &&
-            <Button type="primary" text="Commencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button>}
-
-        {(intervalNumber > 9 && gameSession > 0) && <><div>Votre score est : {score}</div>
-            <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></>}
-
-        {(intervalNumber < 10 && gameSession > 0) && <>
+        {(intervalNumber < 10 && gameSession > 0) && <motion.div className="game-content__wrap" variants={variants} initial='visible' animate="visible" exit='hidden'>
             <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
 
             <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>
-            <Button type="primary" classes={["flx-als-end"]} text="suivant" handleClick={next}></Button>
-        </>}
+            <Button type="primary" classes={["flx-als-end"]} text="Suivant" handleClick={next}></Button>
+        </motion.div>}
+        <AnimatePresence>
+            {(gameSession < 0) &&
+                <motion.div onAnimationComplete={() => { setIntervalNumber(0); setGameSession(1), setScore(0) }} transition={{ duration: .3 }} variants={variants} initial='visible' animate="visible" exit='hidden' className="button-start"><Button type="primary" text="Commencer" handleClick={() => { setGameSession(0) }}></Button></motion.div>}
+        </AnimatePresence>
+        {(intervalNumber > 9 && gameSession > 0) && <><div>Votre score est : {score}</div>
+            <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></>}
         {createPortal(<footer className="game-content__footer"> {(intervalNumber < 10 && gameSession > 0) && <IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>}</footer>, document.body)}
     </div>
 }
