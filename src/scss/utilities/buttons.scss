@@ -12,7 +12,7 @@ $responseButtonRad: 5px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: 'Urbanist-Medium';
+  font-family: 'Urbanist-Bold';
   letter-spacing: 1px;
   font-size: 14px;
   transition: all 0.3s ease;
@@ -30,7 +30,7 @@ $responseButtonRad: 5px;
   }
 
   & .button__icon {
-    width: 12px
+    height: 16px
   }
 }
 

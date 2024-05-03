@@ -7,6 +7,7 @@ import Button from "./buttonBase"
 import { createPortal } from "react-dom"
 import useSoundPlayer from "../hooks/useSound"
 import { AnimatePresence, motion } from "framer-motion"
+import arrow from '../assets/images/arrow_right.svg?react'
 
 const intervalsGenerator = new RandomIntervalGenerator()
 const variants = {
@@ -38,7 +39,7 @@ export default function GameContent() {
         if (containerButtonsRef.current.querySelector('.valid')) {
             return
         }
-
+        containerButtonsRef.current.classList.add('no-events')
 
 
         let valid = false
@@ -99,6 +100,7 @@ export default function GameContent() {
 
             if (intervalNumber < 10) {
                 setIntervalNumber((intervalNumber) => intervalNumber + 1)
+                containerButtonsRef.current.classList.remove('no-events')
 
             }
         } else if (!player.isPlaying()) {
@@ -122,7 +124,7 @@ export default function GameContent() {
             <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
 
             <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>
-            <Button type="primary" classes={["flx-als-end"]} text="Suivant" handleClick={next}></Button>
+            <Button type="primary" classes={["flx-als-end"]} text="Suivant" icon={{ src: arrow, appendType: "after" }} handleClick={next}></Button>
         </motion.div>}
         <AnimatePresence>
             {(gameSession < 0) &&

@@ -45,23 +45,34 @@
     width: calc(100% + 30px);
     height: 100%;
     position: absolute;
-    top: 100%;
+
     left: -15px;
     z-index: 1;
+    transform: translateY(100%);
     background-color: $blue ;
 
     transition: all 0.3s ease-out;
 
   }
 
-  &:hover {
-    color: $white;
-    transition: all 0.3s ease;
+  @media (hover: hover) {
+    &:hover {
+      color: $white;
+      transition: all 0.3s ease;
 
+    }
+
+    &:hover::after {
+      transform: translateY(0);
+    }
   }
 
-  &:hover::after {
-    top: 0
+  &.button-touched {
+    color: $white;
+  }
+
+  &.button-touched::after {
+    transform: translateY(0);
   }
 }
 

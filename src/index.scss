@@ -97,6 +97,11 @@ body {
   align-items: center
 }
 
+
+.no-events {
+  pointer-events: none
+}
+
 @import './scss/utilities/buttons.scss';
 @import './scss/components/counter.scss';
 @import './scss/components/responseButtons.scss';

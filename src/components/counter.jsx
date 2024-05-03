@@ -55,6 +55,9 @@ export default function CounterPoint({ update = () => { }, pause }) {
         [second])
 
     return <span className="point-value"><span ref={value}>{point} pts</span>
-        <svg ref={visualCount} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="icon"><use href="./src/assets/images/progessCounter.svg#test" /></svg>
+        <svg ref={visualCount} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" class="icon">
+            <circle cx="26" cy="26" r="20" pathLength="1" className="bg"></circle>
+            <circle cx="26" cy="26" r="20" pathLength="1" className="progress"></circle>
+        </svg>
     </span>
 }

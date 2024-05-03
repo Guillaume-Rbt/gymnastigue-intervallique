@@ -4,52 +4,50 @@
 }
 
 .point-value {
-    color: $black;
-    background-color: $white;
-    padding: 5px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  
-    & span 
-    {
-      text-align: center;
-      font-size: 13px;
-    }
-  }
-
-  .icon {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-  }
-
-  .icon circle {
-    stroke-dashoffset: 0;
-    stroke-width: 30%;
-    fill: none;
-  }
-
-  .bg
-  {
-    stroke: rgba(255, 0, 0, 0);
-    opacity: 0.2;
-    stroke-width: 5px;
-    fill: none;
-  }
-  
+  color: $black;
+  background-color: $white;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 
-  .progress {
-    stroke: #4a90e2;
-    stroke-width: 5px;
-    fill: none;
-    stroke-dasharray: var(--progress), 1px;
-    transform: rotateZ(-90deg);
-    transform-origin: 50% 50%;
-    transition: all  var(--transition) linear;
+  & span {
+    text-align: center;
+    font-size: 13px;
   }
+}
+
+.icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+}
+
+.icon circle {
+  stroke-dashoffset: 0;
+  stroke-width: 6px;
+  fill: none;
+}
+
+.bg {
+  stroke: rgba(255, 0, 0, 0);
+  opacity: 0.2;
+  stroke-width: 5px;
+  fill: none;
+}
+
+
+
+.progress {
+  stroke: #4a90e2;
+  stroke-width: 5px;
+  fill: none;
+  stroke-dasharray: var(--progress), 1px;
+  transform: rotateZ(-90deg);
+  transform-origin: 50% 50%;
+  transition: all var(--transition) linear;
+}
