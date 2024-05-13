@@ -1,9 +1,7 @@
 $responseButtonRad: 5px;
 
 
-%tedt {
-  padding: 10px 15px
-}
+
 
 
 
@@ -35,7 +33,7 @@ $responseButtonRad: 5px;
 }
 
 .btn.btn-primary {
-  @extend %tedt;
+  padding: 10px 15px;
   background-color: $blue;
   color: $white;
   font-weight: 700;

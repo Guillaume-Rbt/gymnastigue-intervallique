@@ -123,15 +123,15 @@ export default function GameContent() {
         {(intervalNumber < 10 && gameSession > 0) && <motion.div className="game-content__wrap" variants={variants} initial='visible' animate="visible" exit='hidden'>
             <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
 
-            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}> </ResponseButtonsMemo>
+            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse} > </ResponseButtonsMemo>
             <Button type="primary" classes={["flx-als-end"]} text="Suivant" icon={{ src: arrow, appendType: "after" }} handleClick={next}></Button>
         </motion.div>}
         <AnimatePresence>
             {(gameSession < 0) &&
                 <motion.div onAnimationComplete={() => { setIntervalNumber(0); setGameSession(1), setScore(0) }} transition={{ duration: .3 }} variants={variants} initial='visible' animate="visible" exit='hidden' className="button-start"><Button type="primary" text="Commencer" handleClick={() => { setGameSession(0) }}></Button></motion.div>}
         </AnimatePresence>
-        {(intervalNumber > 9 && gameSession > 0) && <><div>Votre score est : {score}</div>
-            <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></>}
+        {(intervalNumber > 9 && gameSession > 0) && <motion.div className="game-content__card"><div>Votre score est : {score}</div>
+            <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></motion.div>}
         {createPortal(<footer className="game-content__footer"> {(intervalNumber < 10 && gameSession > 0) && <IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>}</footer>, document.body)}
     </div>
 }
