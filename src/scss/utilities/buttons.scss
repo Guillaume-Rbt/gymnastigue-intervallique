@@ -30,6 +30,10 @@ $responseButtonRad: 5px;
   & .button__icon {
     height: 16px
   }
+
+  &:has(.btn__text:empty) {
+    gap: 0
+  }
 }
 
 .btn.btn-primary {
@@ -54,8 +58,12 @@ $responseButtonRad: 5px;
   width: var(--radius);
   height: var(--radius);
   border-radius: var(--radius);
-  background: rgb(0, 212, 255);
-  background: linear-gradient(45deg, rgba(0, 212, 255, 1) 0%, rgba(0, 212, 255, 1) 42%, rgba(195, 224, 230, 1) 100%);
+  background: $blue;
+  border: 2px solid $white;
+
+  &:hover {
+    box-shadow: 0 0 0 3px $blue;
+  }
 }
 
 .btn.btn-threeD {

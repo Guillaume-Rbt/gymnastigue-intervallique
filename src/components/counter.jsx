@@ -27,7 +27,7 @@ export default function CounterPoint({ update = () => { }, pause }) {
             setSecond(second => !pause ? second + 1 : second)
         }, 1000);
         return () => { window.clearInterval(timer) }
-    }, [])
+    }, [pause])
 
     useEffect(() => {
 

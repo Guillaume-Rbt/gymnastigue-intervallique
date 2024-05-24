@@ -1,7 +1,7 @@
 import { ResponseButtonsMemo } from "./responseButtons"
 import IntervalPlayer from "./intervalPlayer"
 import CounterPoint from "./counter"
-import { useCallback, useMemo, useRef, useState } from "react"
+import { useCallback, useMemo, useRef, useState, useEffect } from "react"
 import RandomIntervalGenerator from "../libs/RandomIntervalGenerator"
 import Button from "./buttonBase"
 import { createPortal } from "react-dom"
@@ -26,7 +26,15 @@ export default function GameContent() {
         answerScore = score
     })
 
-    const [counterPaused, setCounterPaused] = useState(false)
+    const [counterPaused, setCounterPaused] = useState(true)
+    useEffect(() => {
+        player.on(player.SOUND_END, () => {
+            setCounterPaused(false)
+        })
+
+    }, [player])
+
+
 
 
 
@@ -119,19 +127,21 @@ export default function GameContent() {
 
             </motion.header>}
 
-
-        {(intervalNumber < 10 && gameSession > 0) && <motion.div className="game-content__wrap" variants={variants} initial='visible' animate="visible" exit='hidden'>
-            <div className="game-content__instruction"><p>Quel est l'interval joué ?</p></div>
-
-            <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse} > </ResponseButtonsMemo>
-            <Button type="primary" classes={["flx-als-end"]} text="Suivant" icon={{ src: arrow, appendType: "after" }} handleClick={next}></Button>
-        </motion.div>}
+        <AnimatePresence mode="popLayout">
+            {(intervalNumber < 10 && gameSession > 0) && <motion.div className="game-content__wrap" variants={variants} initial='visible' animate="visible" exit='hidden'>
+                <IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>
+                <ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse} > </ResponseButtonsMemo>
+                <Button type="primary" classes={["flx-als-end"]} text="Suivant" icon={{ src: arrow, appendType: "after" }} handleClick={next}></Button>
+            </motion.div>}
+        </AnimatePresence>
         <AnimatePresence>
             {(gameSession < 0) &&
                 <motion.div onAnimationComplete={() => { setIntervalNumber(0); setGameSession(1), setScore(0) }} transition={{ duration: .3 }} variants={variants} initial='visible' animate="visible" exit='hidden' className="button-start"><Button type="primary" text="Commencer" handleClick={() => { setGameSession(0) }}></Button></motion.div>}
         </AnimatePresence>
-        {(intervalNumber > 9 && gameSession > 0) && <motion.div className="game-content__card"><div>Votre score est : {score}</div>
-            <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></motion.div>}
-        {createPortal(<footer className="game-content__footer"> {(intervalNumber < 10 && gameSession > 0) && <IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>}</footer>, document.body)}
+        <AnimatePresence mode="popLayout">
+            {(intervalNumber > 9 && gameSession > 0) && <motion.div variants={variants} initial='visible' transition={{ duration: .3 }} animate="visible" exit='hidden' className="game-content__card"><div>Votre score est : {score}</div>
+                <Button type="primary" text="Recommencer" handleClick={() => { setIntervalNumber(0); setGameSession(gameSession + 1), setScore(0) }}></Button></motion.div>}
+        </AnimatePresence>
+        {createPortal(<footer className="game-content__footer"></footer>, document.body)}
     </div>
 }
