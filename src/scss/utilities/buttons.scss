@@ -64,6 +64,14 @@ $responseButtonRad: 5px;
   &:hover {
     box-shadow: 0 0 0 3px $blue;
   }
+
+  &.played {
+    background-color: $white;
+    filter: grayscale(1);
+    opacity: .5;
+    border: 2px solid $blue;
+    pointer-events: none;
+  }
 }
 
 .btn.btn-threeD {

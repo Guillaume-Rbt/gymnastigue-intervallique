@@ -3,18 +3,31 @@ import Tooltip from './tooltip'
 import Button from './buttonBase'
 import useSoundPlayer from '../hooks/useSound'
 import play from "../assets/images/play.svg?react"
+import played from "../assets/images/play-played.svg?react"
 
 //const soundPlayer = new SoundPlayer(notes)
 
 export default function IntervalPlayer({ dataInterval }) {
     findTimeNotes(dataInterval)
+    const [isPlayed, setIsPlayed] = useState(false)
 
     const soundPlayer = useSoundPlayer()
     const playInterval = useCallback(() => {
         soundPlayer.playInterval()
+    }, [dataInterval])
+
+    useEffect(() => {
+        soundPlayer.on(soundPlayer.SOUND_START, () => {
+            setIsPlayed(true)
+        })
+
+        soundPlayer.on(soundPlayer.SOUND_END, () => {
+            setIsPlayed(false)
+        })
+
+    }, soundPlayer)
 
 
-    })
 
 
     useEffect(
@@ -27,7 +40,7 @@ export default function IntervalPlayer({ dataInterval }) {
 
 
     return <><Tooltip text="Lire l'interval">
-        <Button type="rounded" radius='50px' icon={{ appendType: "before", src: play }} handleClick={playInterval} ></Button>
+        <Button type={`rounded ${isPlayed ? "played" : ""}`} radius='50px' icon={{ appendType: "before", src: isPlayed ? played : play }} handleClick={playInterval} ></Button>
     </Tooltip>
     </>
 
