@@ -25,7 +25,12 @@ export default class {
     }
 
     emit(event, data) {
-        this.listeners[event].forEach(fn => {
+
+        const lis = this.listeners[event] || []
+        if (!lis) {
+            return this
+        }
+        lis.forEach(fn => {
             fn({ eventName: event, ...data })
         });
 

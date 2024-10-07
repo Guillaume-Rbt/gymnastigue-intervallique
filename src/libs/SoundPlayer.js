@@ -24,9 +24,6 @@ export default class SoundPlayer extends Emitter {
         this.removeListener = this.removeListener.bind(this)
 
         this.addNativeListeners()
-
-        this.listeners[this.SOUND_END] = this.listeners[this.SOUND_END] || []
-        this.listeners[this.SOUND_START] = this.listeners[this.SOUND_START] || []
     }
 
 

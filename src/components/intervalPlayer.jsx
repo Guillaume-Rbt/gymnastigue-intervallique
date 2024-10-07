@@ -25,7 +25,7 @@ export default function IntervalPlayer({ dataInterval }) {
             setIsPlayed(false)
         })
 
-    }, soundPlayer)
+    }, [soundPlayer])
 
 
 
