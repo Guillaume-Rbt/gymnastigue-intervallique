@@ -15,16 +15,16 @@ export const intervals = [
 ]
 
 export const buttons = [
-    "unisson",
-    ["seconde mineure", "seconde majeure"],
-    ["tierce mineure", "tierce majeure"],
-    "quarte juste",
-    "quarte aug / quinte dim",
-    "quinte juste",
-    "quinte aug / sixte mineure",
-    "sixte majeure / septième dim",
-    ["septième mineure", "septième majeure"],
-    "octave"
+    "Unisson",
+    ["Seconde mineure", "seconde Majeure"],
+    ["Tierce mineure", "Tierce Majeure"],
+    "Quarte juste",
+    "Quarte aug / Quinte dim",
+    "Quinte juste",
+    "Quinte aug / Sixte mineure",
+    "Sixte majeure / Septième dim",
+    ["Septième mineure", "Septième Majeure"],
+    "Octave"
 ]
 
 export const buttonsMobile =
