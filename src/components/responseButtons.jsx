@@ -1,8 +1,8 @@
 import { buttons, buttonsMobile } from "../utils/constantsMusical.js";
 import Button from "./buttonBase.jsx";
-import { memo, useEffect, useState, useRef } from "react";
+import { memo, useEffect, useState, useRef, Children, cloneElement } from "react";
 
-export const ResponseButtonsMemo = memo(function ResponseButtons({ callback = () => {}, containerRef }) {
+export const ResponseButtonsMemo = memo(function ResponseButtons({ callback = () => { }, containerRef }) {
 	let buttonList = [];
 
 	const prevWidth = useRef(window.innerWidth);
@@ -25,10 +25,10 @@ export const ResponseButtonsMemo = memo(function ResponseButtons({ callback = ()
 	buttonData.forEach((button, index) => {
 		if (Array.isArray(button)) {
 			let text = button.join(";");
-			console.log(buttons[index]);
+
 			buttonList.push(
 				<Button
-					key={index}
+					key={buttons[index].toLowerCase()}
 					handleClick={(e) => {
 						callback(e);
 					}}
@@ -41,7 +41,7 @@ export const ResponseButtonsMemo = memo(function ResponseButtons({ callback = ()
 		} else
 			buttonList.push(
 				<Button
-					key={index}
+					key={buttons[index].toLowerCase()}
 					double={false}
 					handleClick={(e) => {
 						callback(e);
@@ -52,6 +52,7 @@ export const ResponseButtonsMemo = memo(function ResponseButtons({ callback = ()
 				></Button>
 			);
 	});
+
 
 	return (
 		<div ref={containerRef} className='button-container'>

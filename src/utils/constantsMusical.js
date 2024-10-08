@@ -16,28 +16,28 @@ export const intervals = [
 
 export const buttons = [
     "Unisson",
-    ["Seconde mineure", "seconde Majeure"],
-    ["Tierce mineure", "Tierce Majeure"],
+    "Seconde mineure", "Seconde Majeure",
+    "Tierce mineure", "Tierce Majeure",
     "Quarte juste",
     "Quarte aug / Quinte dim",
     "Quinte juste",
     "Quinte aug / Sixte mineure",
     "Sixte majeure / Septième dim",
-    ["Septième mineure", "Septième Majeure"],
+    "Septième mineure", "Septième Majeure",
     "Octave"
 ]
 
 export const buttonsMobile =
     [
-        "unis.",
-        ["2<sup>nde</sup> m", "2nde M"],
-        ["3<sup>ce</sup> m", "3<sup>ce</sup> M"],
+        "Uniss.",
+        "2<sup>nde</sup> m", "2nde M",
+        "3<sup>ce</sup> m", "3<sup>ce</sup> M",
         "4<sup>te</sup>",
         "4<sup>te</sup> aug / 5<sup>te</sup> dim",
         "5<sup>te</sup>",
         "5<sup>te</sup> aug / 6<sup>te</sup> m",
         "6<sup>te</sup> M / 7<sup>ème</sup> dim",
-        ["7<sup>ème</sup> m", "7<sup>ème</sup> M"],
+        "7<sup>ème</sup> m", "7<sup>ème</sup> M",
         "8<sup>ve</sup>"
     ]
 

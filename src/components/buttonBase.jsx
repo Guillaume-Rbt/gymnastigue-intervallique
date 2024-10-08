@@ -1,4 +1,4 @@
-export default function Button({ double, text, radius = "0px", type = "primary", classes = null, handleClick = () => {}, dataValue = "", targetref, icon = {} }) {
+export default function Button({ double, text, radius = "0px", type = "primary", classes = null, handleClick = () => { }, dataValue = "", targetref, icon = {} }) {
 	let classesStr = "";
 
 	if (classes) {

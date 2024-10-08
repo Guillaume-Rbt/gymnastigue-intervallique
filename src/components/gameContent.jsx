@@ -45,6 +45,7 @@ export default function GameContent() {
 	}, [intervalNumber]);
 
 	const intervals = useMemo(() => {
+		if (gameSession <= 0) { return }
 		return intervalsGenerator.generateAnyIntervals(10);
 	}, [gameSession]);
 
@@ -84,7 +85,7 @@ export default function GameContent() {
 				response.classList.add("valid");
 			}
 		},
-		[intervalNumber]
+		[intervalNumber, gameSession]
 	);
 
 	const next = function () {
@@ -132,10 +133,9 @@ export default function GameContent() {
 				{intervalNumber < 10 && gameSession > 0 && (
 					<motion.div className='game-content__wrap' variants={variants} initial='visible' animate='visible' exit='hidden'>
 						<IntervalPlayer init={true} dataInterval={intervals[intervalNumber]}></IntervalPlayer>
-						<ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}>
-							{" "}
-						</ResponseButtonsMemo>
-						<Button type='primary' targetref={nextButtonRef} classes={["flx-als-end"]} text='Suivant' icon={{ src: arrow, appendType: "after" }} handleClick={next}></Button>
+						<ResponseButtonsMemo containerRef={containerButtonsRef} callback={handleResponse}></ResponseButtonsMemo>
+						<Button key='next' type='primary' targetref={nextButtonRef} classes={["flx-als-end"]} text='Suivant' icon={{ src: arrow, appendType: "after" }} handleClick={next}></Button>
+
 					</motion.div>
 				)}
 			</AnimatePresence>
