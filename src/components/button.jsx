@@ -1,10 +1,9 @@
 export default function Button({
-    double,
     text,
     radius = '0px',
     type = 'primary',
     classes = null,
-    handleClick = () => {},
+    handleClick = () => { },
     dataValue = '',
     targetref,
     icon = {},
