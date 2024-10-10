@@ -12,27 +12,24 @@ export default class {
         this.rawListeners = this.rawListeners.bind(this)
     }
 
-
     addListener(event, fn) {
         this.listeners[event] = this.listeners[event] || []
         this.listeners[event].push(fn)
         return this
     }
 
-
     on(event, fn) {
         return this.addListener(event, fn)
     }
 
     emit(event, data) {
-
         const lis = this.listeners[event] || []
         if (!lis) {
             return this
         }
-        lis.forEach(fn => {
+        lis.forEach((fn) => {
             fn({ eventName: event, ...data })
-        });
+        })
 
         return this
     }
@@ -47,7 +44,7 @@ export default class {
         for (let i = lis.length; i > 0; i--) {
             if (lis[i] == fn) {
                 lis.splice(i, 1)
-                break;
+                break
             }
         }
 
@@ -69,7 +66,6 @@ export default class {
         this.listeners[event].push(onceWrapper)
 
         return this
-
     }
 
     listernerCount(event) {

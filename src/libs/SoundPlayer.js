@@ -1,4 +1,4 @@
-import Emitter from "./Emitter"
+import Emitter from './Emitter'
 
 export default class SoundPlayer extends Emitter {
     get SOUND_END() {
@@ -12,7 +12,7 @@ export default class SoundPlayer extends Emitter {
         this.audio = new Audio(source)
         this.interval = {
             timeNote1: 0,
-            timeNote2: 1
+            timeNote2: 1,
         }
         this.currentNote = 1
         this.emitSoundEnd = true
@@ -26,8 +26,6 @@ export default class SoundPlayer extends Emitter {
         this.addNativeListeners()
     }
 
-
-
     setIntervalTimes(interval) {
         this.interval = interval
         this.audio.pause()
@@ -35,26 +33,25 @@ export default class SoundPlayer extends Emitter {
     }
 
     onAudioTimeUpdater() {
-        if (this.audio.currentTime >= this.interval.timeNote1 / 1000 + 0.850 && this.currentNote == 1) {
+        if (
+            this.audio.currentTime >= this.interval.timeNote1 / 1000 + 0.85 &&
+            this.currentNote == 1
+        ) {
             this.audio.pause()
             this.audio.currentTime = this.interval.timeNote2 / 1000
             this.emitSoundEnd = true
             this.currentNote = 2
             this.audio.play()
-        }
-        else if (this.currentNote == 2 && this.audio.currentTime >= this.interval.timeNote2 / 1000 + 0.850) {
+        } else if (
+            this.currentNote == 2 &&
+            this.audio.currentTime >= this.interval.timeNote2 / 1000 + 0.85
+        ) {
             this.audio.pause()
             if (this.emitSoundEnd) {
                 this.emit(this.SOUND_END, { interval: this.interval })
-
             }
         }
-
     }
-
-
-
-
 
     playInterval() {
         if (this.audio.paused) {
@@ -63,7 +60,6 @@ export default class SoundPlayer extends Emitter {
             this.audio.currentTime = this.interval.timeNote1 / 1000
             this.audio.play()
             this.emit(this.SOUND_START, { interval: this.interval })
-
         }
     }
 
@@ -73,6 +69,5 @@ export default class SoundPlayer extends Emitter {
 
     isPlaying() {
         return !this.audio.paused
-
     }
 }

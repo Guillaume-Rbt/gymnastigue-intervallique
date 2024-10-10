@@ -1,4 +1,4 @@
-import { intervals, notes } from "../utils/constantsMusical"
+import { intervals, notes } from '../utils/constantsMusical'
 
 export default class RandomIntervalGenerator {
     constructor(options) {
@@ -13,17 +13,16 @@ export default class RandomIntervalGenerator {
         this.generateInterval()
     }
 
-
     setDefaultOptions(options) {
         this.options = {
-            intervalsAllowed: "all", //use later if implements intervals choices
-            ...options
+            intervalsAllowed: 'all', //use later if implements intervals choices
+            ...options,
         }
     }
 
     /**
-     * 
-     * @param {number} [min=0] 
+     *
+     * @param {number} [min=0]
      * @param {number} [max=0]
      * @returns {number}
      * @description return an int between min & max
@@ -34,14 +33,27 @@ export default class RandomIntervalGenerator {
 
     generateInterval() {
         const intervalByNumber = this.randomNumber(0, 12)
-        const intervalName = intervals[intervalByNumber];
+        const intervalName = intervals[intervalByNumber]
         const noteStartNumber = this.randomNumber(0, 11)
         const noteStartName = notes[noteStartNumber]
-        const direction = this.randomNumber(0, 1) == 0 ? 'desc' : "asc"
-        const noteEndNumber = direction == "asc" ? (noteStartNumber + intervalByNumber) > 11 ? (noteStartNumber + intervalByNumber) - 12 : noteStartNumber + intervalByNumber :
-            (noteStartNumber - intervalByNumber) < 0 ? 12 + (noteStartNumber - intervalByNumber) : noteStartNumber - intervalByNumber
+        const direction = this.randomNumber(0, 1) == 0 ? 'desc' : 'asc'
+        const noteEndNumber =
+            direction == 'asc'
+                ? noteStartNumber + intervalByNumber > 11
+                    ? noteStartNumber + intervalByNumber - 12
+                    : noteStartNumber + intervalByNumber
+                : noteStartNumber - intervalByNumber < 0
+                  ? 12 + (noteStartNumber - intervalByNumber)
+                  : noteStartNumber - intervalByNumber
         const noteEndName = notes[noteEndNumber]
-        const isPassOctave = direction == 'asc' ? (noteStartNumber + intervalByNumber) > 11 ? true : false : (noteStartNumber - intervalByNumber) < 0 ? true : false
+        const isPassOctave =
+            direction == 'asc'
+                ? noteStartNumber + intervalByNumber > 11
+                    ? true
+                    : false
+                : noteStartNumber - intervalByNumber < 0
+                  ? true
+                  : false
         const octave = this.randomNumber(0, 2)
 
         let interval = {
@@ -49,8 +61,20 @@ export default class RandomIntervalGenerator {
             direction: direction,
             name: intervalName,
             isPassOctave: isPassOctave,
-            noteStart: { name: noteStartName, octave: octave, index: noteStartNumber },
-            noteEnd: { name: noteEndName, octave: isPassOctave ? direction == 'asc' ? octave + 1 : octave - 1 : octave, index: noteEndNumber }
+            noteStart: {
+                name: noteStartName,
+                octave: octave,
+                index: noteStartNumber,
+            },
+            noteEnd: {
+                name: noteEndName,
+                octave: isPassOctave
+                    ? direction == 'asc'
+                        ? octave + 1
+                        : octave - 1
+                    : octave,
+                index: noteEndNumber,
+            },
         }
 
         let intervalAdjusted = this.adjustIntervalOctave(interval)
@@ -58,20 +82,18 @@ export default class RandomIntervalGenerator {
         return intervalAdjusted
     }
 
-
-
     adjustIntervalOctave(interval) {
         switch (interval.direction) {
-            case "asc":
+            case 'asc':
                 if (interval.noteEnd.octave > 2) {
                     interval.noteStart.octave = interval.noteStart.octave - 1
                     interval.noteEnd.octave = interval.noteEnd.octave - 1
-                };
-            case "desc":
+                }
+            case 'desc':
                 if (interval.noteEnd.octave < 0) {
                     interval.noteStart.octave = interval.noteStart.octave + 1
                     interval.noteEnd.octave = interval.noteEnd.octave + 1
-                };
+                }
         }
         return interval
     }

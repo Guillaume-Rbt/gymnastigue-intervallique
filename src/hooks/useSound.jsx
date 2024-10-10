@@ -1,12 +1,11 @@
-import SoundPlayer from "../libs/SoundPlayer";
+import SoundPlayer from '../libs/SoundPlayer'
 import notes from '../assets/sounds/notes.wav'
-import { useMemo } from "react";
+import { useMemo } from 'react'
 
-const soundPlayer= new SoundPlayer(notes)
+const soundPlayer = new SoundPlayer(notes)
 
-export default function useSoundPlayer ()
-{
- const player = useMemo(()=> soundPlayer, [soundPlayer])
+export default function useSoundPlayer() {
+    const player = useMemo(() => soundPlayer, [soundPlayer])
 
- return player
+    return player
 }

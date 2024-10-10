@@ -1,54 +1,51 @@
 :root {
-  --progress: 1px;
-  --transition: 999ms
+    --progress: 1px;
+    --transition: 999ms;
 }
 
 .point-value {
-  color: $black;
-  background-color: $white;
-  padding: 5px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: 2px solid $blue;
+    color: $black;
+    background-color: $white;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 2px solid $blue;
 
-
-  & span {
-    text-align: center;
-    font-size: 13px;
-  }
+    & span {
+        text-align: center;
+        font-size: 13px;
+    }
 }
 
 .icon {
-  position: absolute;
-  width: 60px;
-  height: 60px;
+    position: absolute;
+    width: 60px;
+    height: 60px;
 }
 
 .icon circle {
-  stroke-dashoffset: 0;
-  stroke-width: 6px;
-  fill: none;
+    stroke-dashoffset: 0;
+    stroke-width: 6px;
+    fill: none;
 }
 
 .bg {
-  stroke: rgba(255, 0, 0, 0);
-  opacity: 0.2;
-  stroke-width: 5px;
-  fill: none;
+    stroke: rgba(255, 0, 0, 0);
+    opacity: 0.2;
+    stroke-width: 5px;
+    fill: none;
 }
 
-
-
 .progress {
-  stroke: #4a90e2;
-  stroke-width: 5px;
-  fill: none;
-  stroke-dasharray: var(--progress), 1px;
-  transform: rotateZ(-90deg);
-  transform-origin: 50% 50%;
-  transition: all var(--transition) linear;
+    stroke: #4a90e2;
+    stroke-width: 5px;
+    fill: none;
+    stroke-dasharray: var(--progress), 1px;
+    transform: rotateZ(-90deg);
+    transform-origin: 50% 50%;
+    transition: all var(--transition) linear;
 }

@@ -1,137 +1,88 @@
- .button-container {
-   display: flex;
-   gap: 15px;
-   flex-wrap: wrap;
-   justify-content: center;
-   width: 80%;
+.button-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+}
 
- }
+.btn-response {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex: 0 0 calc(30% - 30px);
+    font-family: 'Urbanist-Bold';
+    border-radius: $responseButtonRad;
+    border: 2px solid $blue;
+    color: $blue;
+    background-color: #e5eef6;
+    padding: 10px 15px;
+    text-transform: none;
+    transition: all 0.3s ease;
+    background-position: 50%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 10px 1px #babec4;
 
+    &::after {
+        content: '';
+        width: calc(100% + 30px);
+        height: 100%;
+        position: absolute;
 
+        left: -15px;
+        z-index: 1;
+        transform: translateY(100%);
+        background-color: $blue;
 
- .group-btn {
-   display: flex;
-   align-items: center;
-   border-radius: $responseButtonRad;
-   box-shadow: 0 5px 10px 1px #babec4;
+        transition: all 0.3s ease-out;
+    }
 
+    @media (hover: hover) {
+        &:hover {
+            color: $white;
+            transition: all 0.3s ease;
+        }
 
+        &:hover::after {
+            transform: translateY(0);
+        }
+    }
 
-   & .separator {
-     width: 2px;
-     height: 100%;
-     background-color: $blue;
-   }
- }
+    &.button-touched {
+        color: $white;
+    }
 
+    &.button-touched::after {
+        transform: translateY(0);
+    }
+}
 
- .btn-response {
-   flex-grow: 1;
-   flex-shrink: 0;
-   flex: 0 0 calc(30% - 30px);
-   font-family: "Urbanist-Bold";
-   border-radius: $responseButtonRad;
-   border: 2px solid $blue;
-   color: $blue;
-   background-color: #e5eef6;
-   padding: 10px 15px;
-   text-transform: none;
-   transition: all 0.3s ease;
-   background-position: 50%;
-   position: relative;
-   overflow: hidden;
-   box-shadow: 0 5px 10px 1px #babec4;
+.btn-response.error {
+    background-color: $error;
+    background-repeat: no-repeat;
+    color: $white;
+    background-image: linear-gradient(180deg, #be3939 0%, #e94f4e 30%);
+    border-color: #be3939;
+    animation: background 0.3s forwards ease-in;
+    pointer-events: none;
+}
 
+.btn-response.valid {
+    background-color: #93ae38;
+    background-repeat: no-repeat;
+    color: $white;
+    background-image: linear-gradient(180deg, #8da52d 0%, #a7c740 30%);
+    pointer-events: none;
+    border-color: #a7c740;
+    animation: background 0.3s forwards ease-in-out;
+}
 
+@keyframes background {
+    0% {
+        background-size: 100% 0%;
+    }
 
-   &::after {
-     content: "";
-     width: calc(100% + 30px);
-     height: 100%;
-     position: absolute;
-
-     left: -15px;
-     z-index: 1;
-     transform: translateY(100%);
-     background-color: $blue;
-
-     transition: all 0.3s ease-out;
-
-   }
-
-   @media (hover: hover) {
-     &:hover {
-       color: $white;
-       transition: all 0.3s ease;
-
-     }
-
-     &:hover::after {
-       transform: translateY(0);
-     }
-   }
-
-   &.button-touched {
-     color: $white;
-   }
-
-   &.button-touched::after {
-     transform: translateY(0);
-   }
- }
-
- .group-btn .double-btn:first-child {
-   border-top-left-radius: $responseButtonRad;
-   border-bottom-left-radius: $responseButtonRad;
-   border-top-right-radius: 0px;
-   border-bottom-right-radius: 0px;
-   border-right: none;
- }
-
- .group-btn .double-btn:last-child {
-   border-left: none;
-   border-top-left-radius: 0px;
-   border-bottom-left-radius: 0px;
-   border-top-right-radius: $responseButtonRad;
-   border-bottom-right-radius: $responseButtonRad;
-   border-left: none;
- }
-
- .btn-response.double-btn {
-   box-shadow: none;
- }
-
- .btn-response.error {
-   background-color: $error;
-   background-repeat: no-repeat;
-   color: $white;
-   background-image: linear-gradient(180deg, #be3939 0%, #E94F4E 30%);
-   border-color: #be3939;
-   animation: background 0.3s forwards ease-in;
-   pointer-events: none;
-
-
- }
-
- .btn-response.valid {
-   background-color: #93AE38;
-   background-repeat: no-repeat;
-   color: $white;
-   background-image: linear-gradient(180deg, #8da52d 0%, #a7c740 30%);
-   pointer-events: none;
-   border-color: #a7c740;
-   animation: background 0.3s forwards ease-in-out
- }
-
-
-
-
- @keyframes background {
-   0% {
-     background-size: 100% 0%;
-   }
-
-   100% {
-     background-size: 100% 100%
-   }
- }
+    100% {
+        background-size: 100% 100%;
+    }
+}
